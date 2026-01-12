@@ -2,7 +2,7 @@
 
 Este es el frontend de la plataforma White Label, construido con tecnologias modernas para asegurar rendimiento y mantenibilidad.
 
-##  Tecnolog�as
+##  Tecnologias
 
 - **React 18**
 - **TypeScript**: Tipado estetico para mayor seguridad y escalabilidad.
@@ -16,7 +16,7 @@ El proyecto ha sido inicializado limpiamente, eliminando el boilerplate innecesa
 - `src/App.tsx`: Componente raiz limpio.
 - `src/main.tsx`: Punto de entrada de React.
 
-##  Configuraci�n y Ejecuci�n
+##  Configuracion y Ejecucion
 
 1.  **Instalar dependencias**:
     ```bash
@@ -29,11 +29,11 @@ El proyecto ha sido inicializado limpiamente, eliminando el boilerplate innecesa
     ```
     La aplicacion estar, disponible tipicamente en `http://localhost:5173`.
 
-3.  **Construir para producci�n**:
+3.  **Construir para produccion**:
     ```bash
     npm run build
     ```
 
-##  Integraci�n
+##  Integracion
 
 Este frontend esta diseñado para consumir la API REST del backend (`CodeBase-Back`). Asegurate de tener el backend corriendo para la integracion completa.
