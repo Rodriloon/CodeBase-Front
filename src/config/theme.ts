@@ -20,13 +20,13 @@ export const barberTheme: AppTheme = {
   businessName: "Estilo & Corte",
 };
 
-// Configuración para Cancha (Ejemplo)
+// Configuración para Cancha (Defecto)
 export const soccerTheme: AppTheme = {
   primaryColor: "#22c55e", // Green
   secondaryColor: "#15803d",
   logoUrl: "/soccer-logo.png",
-  businessName: "La Cancha 10",
+  businessName: "Futbol Manager 5",
 };
 
 // Aquí podrías cargar el tema dinámicamente según variables de entorno o API
-export const currentTheme = defaultTheme;
+export const currentTheme = soccerTheme;
