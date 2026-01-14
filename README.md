@@ -1,22 +1,37 @@
-# CodeBase Frontend - Plataforma White Label
+# ⚽ Fútbol Manager 5 - Frontend
 
-Este es el frontend de la plataforma White Label, construido con tecnologias modernas para asegurar rendimiento y mantenibilidad.
+Frontend moderno y reactivo para la plataforma de gestión de canchas. Construido con **React**, **TypeScript** y componentizado con **Shadcn/ui**.
 
-##  Tecnologias
+## 🎨 Características
 
-- **React 18**
-- **TypeScript**: Tipado estetico para mayor seguridad y escalabilidad.
-- **Vite**: Entorno de desarrollo y build tool ultrarrapido.
-- **ESLint**: Linter para mantener la calidad del codigo.
+*   **White Label**: Sistema de temas configurable desde `src/config/theme.ts`.
+*   **UI Components**: Utiliza [shadcn/ui](https://ui.shadcn.com/) sobre **Tailwind CSS**.
+*   **Gestión de Estados**: React Hooks (`useState`, `useEffect`).
+*   **Responsive**: Diseño adaptativo para escritorio y móvil.
 
-##  Estructura del Proyecto
+## 🛠️ Tecnologías
 
-El proyecto ha sido inicializado limpiamente, eliminando el boilerplate innecesario de Vite.
+*   **React 18**
+*   **Vite**: Build tool rápido.
+*   **TypeScript**: Tipado estático.
+*   **Tailwind CSS (v3.4)**: Estilos utilitarios.
+*   **Lucide React**: Iconografía.
 
-- `src/App.tsx`: Componente raiz limpio.
-- `src/main.tsx`: Punto de entrada de React.
+## 📂 Estructura del Proyecto
 
-##  Configuracion y Ejecucion
+```
+src/
+├── components/
+│   ├── ui/          # Componentes genéricos (Botones, Cards, Badges) - Shadcn
+│   └── business/    # Componentes de negocio (FieldList, BookingForm)
+├── config/
+│   └── theme.ts     # Configuración de colores y marca (White Label)
+├── lib/
+│   └── utils.ts     # Utilidades de clases (cn)
+└── App.tsx          # Layout principal
+```
+
+## 🚀 Instalación y Ejecución
 
 1.  **Instalar dependencias**:
     ```bash
@@ -27,13 +42,11 @@ El proyecto ha sido inicializado limpiamente, eliminando el boilerplate innecesa
     ```bash
     npm run dev
     ```
-    La aplicacion estar, disponible tipicamente en `http://localhost:5173`.
+    La aplicación estará disponible en `http://localhost:5173`.
 
-3.  **Construir para produccion**:
-    ```bash
-    npm run build
-    ```
+## 🔄 Integración
 
-##  Integracion
+La aplicación espera que el Backend esté corriendo en el puerto `8080`.
+La configuración de conexión se realiza directamente mediante `fetch` a `http://localhost:8080/api/v1/...`.
 
-Este frontend esta diseñado para consumir la API REST del backend (`CodeBase-Back`). Asegurate de tener el backend corriendo para la integracion completa.
+> **Nota sobre Tailwind**: Se utiliza la versión 3.x para compatibilidad total con Shadcn/ui.
