@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Users, Warehouse, Sun } from "lucide-react"
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 interface Field {
   id: number
@@ -63,7 +64,9 @@ export function FieldList() {
             </div>
           </CardContent>
           <CardFooter>
-            <Button className="w-full">Ver Disponibilidad</Button>
+            <Link to={`/field/${field.id}`} className="w-full">
+                <Button className="w-full">Ver Disponibilidad</Button>
+            </Link>
           </CardFooter>
         </Card>
       ))}
