@@ -9,8 +9,11 @@ import {
 } from "./ui/sheet";
 import { Button } from "./ui/button";
 import { Menu } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
 
 function Header() {
+  const {loading, user, logout}= useAuth()
+
   return (
     <header
       className="border-b shadow-sm sticky top-0 z-40"
@@ -34,12 +37,16 @@ function Header() {
           >
             Inicio
           </Link>
-          <span className="hover:opacity-80 cursor-pointer transition-opacity">
-            Mis Reservas
-          </span>
-          <span className="hover:opacity-80 cursor-pointer transition-opacity">
-            Perfil
-          </span>
+          {(!loading && !user) && (
+            <Link
+              to={`${import.meta.env.VITE_API_URL}/oauth2/authorization/google`}
+              className="hover:opacity-80 cursor-pointer transition-opacity"
+            >
+              Iniciar sesion
+            </Link>
+          )}
+
+          {(!loading && user) && <button onClick={logout}>Cerrar sesion</button>}
         </nav>
 
         {/* Navegación Mobile (Sheet) */}
