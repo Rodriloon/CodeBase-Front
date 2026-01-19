@@ -1,5 +1,4 @@
 import { FieldList } from '@/components/business/FieldList'
-import { currentTheme } from '@/config/theme'
 
 export function HomePage() {
   return (

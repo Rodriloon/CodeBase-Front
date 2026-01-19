@@ -4,17 +4,14 @@ import { Button } from "@/components/ui/button"
 import { Users, Warehouse, Sun } from "lucide-react"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import type { FieldResponseDTO } from "@/types/field"
 
-interface Field {
-  id: number
-  name: string
-  capacity: number
-  isIndoor: boolean
-  surface: string
+const formatSurface = (surface: string) => {
+  return surface.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, l => l.toUpperCase())
 }
 
 export function FieldList() {
-  const [fields, setFields] = useState<Field[]>([])
+  const [fields, setFields] = useState<FieldResponseDTO[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -41,26 +38,31 @@ export function FieldList() {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       {fields.map((field) => (
-        <Card key={field.id} className="w-full">
+        <Card key={field.id} className="w-full flex flex-col">
           <CardHeader>
-            <div className="flex justify-between items-center">
-              <CardTitle>{field.name}</CardTitle>
-              {field.isIndoor ? (
-                <Badge variant="secondary" className="gap-1">
-                  <Warehouse className="h-3 w-3" /> Techada
-                </Badge>
-              ) : (
-                <Badge variant="outline" className="gap-1">
-                  <Sun className="h-3 w-3" /> Aire Libre
-                </Badge>
-              )}
+            <div className="flex justify-between items-start">
+              <div>
+                <CardTitle>{field.name}</CardTitle>
+                <CardDescription className="line-clamp-2 mt-1">{field.description || "Sin descripción"}</CardDescription>
+              </div>
+              <Badge variant={field.status === 'AVAILABLE' ? "default" : "destructive"}>
+                {field.status === 'AVAILABLE' ? 'Disponible' : 'Mantenimiento'}
+              </Badge>
             </div>
-            <CardDescription>{field.surface.replace(/_/g, ' ')}</CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="flex items-center gap-2 text-sm text-foreground">
-              <Users className="h-4 w-4" />
-              <span className="font-medium">Fútbol {field.capacity}</span>
+          <CardContent className="flex-1">
+            <div className="flex gap-2 flex-wrap mb-2">
+              <Badge variant="outline" className="flex items-center gap-1">
+                <Users className="h-3 w-3" />
+                {field.capacity}
+              </Badge>
+              <Badge variant="outline" className="flex items-center gap-1">
+                {field.isIndoor ? <Warehouse className="h-3 w-3" /> : <Sun className="h-3 w-3" />}
+                {field.isIndoor ? 'Techada' : 'Aire libre'}
+              </Badge>
+              <Badge variant="secondary">
+                {formatSurface(field.surface)}
+              </Badge>
             </div>
           </CardContent>
           <CardFooter>
