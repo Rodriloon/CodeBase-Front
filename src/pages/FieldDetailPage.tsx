@@ -9,13 +9,13 @@ import { Calendar, MapPin, Users, XCircle, AlertTriangle } from "lucide-react"
 import type { FieldResponseDTO } from "@/types/field"
 
 interface Booking {
-  id: number
-  startTime: string
-  endTime: string
-  status: string
+  id: number;
+  startTime: string;
+  endTime: string;
+  status: string;
 }
 
-const HOURS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+const HOURS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
 
 export function FieldDetailPage() {
   const { id } = useParams()
@@ -25,33 +25,42 @@ export function FieldDetailPage() {
   const [loading, setLoading] = useState(true)
 
   // Generar lista de próximos 7 días
-  const nextDays = Array.from({ length: 7 }, (_, i) => addDays(new Date(), i))
+  const nextDays = Array.from({ length: 7 }, (_, i) => addDays(new Date(), i));
 
   useEffect(() => {
-    if (!id) return
-    
+    if (!id) return;
+
     // Fetch Field Info
     fetch(`http://localhost:8080/api/v1/fields/${id}`)
-      .then(res => res.json())
-      .then(data => setField(data))
-      .catch(err => console.error("Error fetching field", err))
+      .then((res) => res.json())
+      .then((data) => setField(data))
+      .catch((err) => console.error("Error fetching field", err));
 
     // Fetch Bookings for this field
     fetch(`http://localhost:8080/api/v1/bookings/field/${id}`)
-      .then(res => res.json())
-      .then(data => setBookings(data))
-      .catch(err => console.error("Error fetching bookings", err))
-      .finally(() => setLoading(false))
+      .then((res) => res.json())
+      .then((data) => setBookings(data))
+      .catch((err) => console.error("Error fetching bookings", err))
+      .finally(() => setLoading(false));
+  }, [id]);
 
-  }, [id])
-
-  if (loading) return <div className="p-8 text-center text-gray-500">Cargando información de la cancha...</div>
-  if (!field) return <div className="p-8 text-center text-red-500 text-lg">Cancha no encontrada</div>
+  if (loading)
+    return (
+      <div className="p-8 text-center text-gray-500">
+        Cargando información de la cancha...
+      </div>
+    );
+  if (!field)
+    return (
+      <div className="p-8 text-center text-red-500 text-lg">
+        Cancha no encontrada
+      </div>
+    );
 
   const isSlotOccupied = (hour: number) => {
-    const slotTime = startOfDay(selectedDate)
-    slotTime.setHours(hour)
-    
+    const slotTime = startOfDay(selectedDate);
+    slotTime.setHours(hour);
+
     // Simple check: if a booking starts exactly at this hour
     // (A real check would verify intervals)
     return bookings.some(b => {
@@ -164,5 +173,5 @@ export function FieldDetailPage() {
         </>
       )}
     </div>
-  )
+  );
 }
