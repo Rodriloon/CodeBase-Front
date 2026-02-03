@@ -1,4 +1,5 @@
-import { getUser, type User } from "@/api/user";
+import { getUser } from "@/api/user";
+import { type User } from "@/types/user";
 import { createContext, useContext, useEffect, useState } from "react";
 
 type AuthContextType = {

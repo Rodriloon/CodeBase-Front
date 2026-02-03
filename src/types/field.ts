@@ -1,8 +1,10 @@
+import type { Complex } from "./complex"
+
 export type SurfaceType = 'SYNTHETIC_GRASS' | 'NATURAL_GRASS' | 'PARQUET' | 'CONCRETE' | 'CARPET'
 
 export type FieldStatus = 'AVAILABLE' | 'MAINTENANCE'
 
-export interface FieldResponseDTO {
+export interface Field {
   id: number
   name: string
   description?: string
@@ -10,4 +12,5 @@ export interface FieldResponseDTO {
   surface: SurfaceType
   isIndoor: boolean
   status: FieldStatus
+  complex?: Complex
 }

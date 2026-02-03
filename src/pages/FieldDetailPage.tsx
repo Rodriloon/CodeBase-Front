@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Calendar, MapPin, Users, XCircle, AlertTriangle } from "lucide-react"
-import type { FieldResponseDTO } from "@/types/field"
+import type { Field } from "@/types/field"
 
 interface Booking {
   id: number;
@@ -19,7 +19,7 @@ const HOURS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
 
 export function FieldDetailPage() {
   const { id } = useParams()
-  const [field, setField] = useState<FieldResponseDTO | null>(null)
+  const [field, setField] = useState<Field | null>(null)
   const [bookings, setBookings] = useState<Booking[]>([])
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
   const [loading, setLoading] = useState(true)
